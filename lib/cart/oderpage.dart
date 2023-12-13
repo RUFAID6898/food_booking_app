@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'package:food_app/class/cart_items.dart';
 import 'package:food_app/class/item_counder.dart';
-import 'package:food_app/widget/counder_button.dart';
+import 'package:food_app/widget/counter_button.dart';
 import 'package:provider/provider.dart';
 
-class CartPage extends StatelessWidget {
+class OderPage extends StatelessWidget {
   final Cart cart;
 
-  CartPage({required this.cart});
+  const OderPage({super.key, required this.cart});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.width;
-    final counterProvider = Provider.of<CartProvider>(context);
+    final counterProvider = Provider.of<CounterProvider>(context);
+    var cart = Provider.of<Cart>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -102,13 +104,8 @@ class CartPage extends StatelessWidget {
                           const SizedBox(
                             width: 10,
                           ),
-                          CounderButton(
+                          CounterButton(
                               decrementCounter: () {
-                                if (counterProvider
-                                        .getCounter(item.dish.dishId!) ==
-                                    0) {
-                                  cart.clearCart();
-                                }
                                 cart.removeItem(
                                     item.dish,
                                     counterProvider

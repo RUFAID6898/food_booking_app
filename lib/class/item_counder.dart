@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/class/cart_items.dart';
 
-class CartProvider extends ChangeNotifier {
+class CounterProvider extends ChangeNotifier {
+  late Cart cart;
+
   final Map<String, int> counters = {};
 
   void incrementCounter(String dishId) {

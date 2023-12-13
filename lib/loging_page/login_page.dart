@@ -1,11 +1,10 @@
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_signin_button/flutter_signin_button.dart';
-// import 'package:food_app/home/screen_home.dart';
+
 import 'package:food_app/loging_page/phone_number_verification.dart';
 
 import 'package:food_app/services/auth_services.dart';
 
+// ignore: must_be_immutable
 class LogingPage extends StatelessWidget {
   LogingPage({super.key});
 
@@ -28,26 +27,32 @@ class LogingPage extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                authService.signInWithGoogle();
+                authService.signInWithGoogle(context);
               },
-              child: Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(30)),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      child: Image.network(
-                          'http://pngimg.com/uploads/google/google_PNG19635.png',
-                          fit: BoxFit.cover),
-                    ),
-                    const SizedBox(
-                      width: 40,
-                    ),
-                    const Text('Sign-in with Google')
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Container(
+                  height: 50,
+                  width: 300,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(30)),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        child: Image.network(
+                            'http://pngimg.com/uploads/google/google_PNG19635.png',
+                            fit: BoxFit.cover),
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      const Text(
+                        'Sign-in with Google',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -59,23 +64,27 @@ class LogingPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PhoneNumberVerification(),
+                      builder: (context) => const PhoneNumberVerification(),
                     ));
               },
-              child: Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(30)),
-                child: const Row(
-                  children: [
-                    CircleAvatar(child: Icon(Icons.call)),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Text('Sign-in with phone')
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Container(
+                  height: 50,
+                  width: 300,
+                  decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(30)),
+                  child: const Row(
+                    children: [
+                      CircleAvatar(child: Icon(Icons.call)),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Text('Sign-in with phone',
+                          style: TextStyle(color: Colors.white))
+                    ],
+                  ),
                 ),
               ),
             ),

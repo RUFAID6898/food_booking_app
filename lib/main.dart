@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/authentication/authentication.dart';
+import 'package:food_app/class/cart_items.dart';
 import 'package:food_app/class/item_counder.dart';
 import 'package:provider/provider.dart';
 
@@ -18,8 +19,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (context) => CartProvider(),
+            create: (context) => CounterProvider(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => Cart(),
+          )
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/class/item_counder.dart';
-import 'package:provider/provider.dart';
 
-class CounderButton extends StatelessWidget {
-  // String decrementCounter;
+// ignore: must_be_immutable
+class CounterButton extends StatelessWidget {
   Function()? incrementCounter;
   String count;
   Function()? decrementCounter;
 
-  CounderButton(
+  CounterButton(
       {super.key,
       required this.decrementCounter,
       required this.incrementCounter,
@@ -16,8 +14,6 @@ class CounderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final counterProvider = Provider.of<CartProvider>(context);
-
     return Container(
       width: 130,
       height: 40,
@@ -29,12 +25,21 @@ class CounderButton extends StatelessWidget {
         children: [
           IconButton(
             onPressed: decrementCounter,
-            icon: Icon(Icons.remove),
+            icon: const Icon(
+              Icons.remove,
+              color: Colors.white,
+            ),
           ),
-          Text(count),
+          Text(
+            count,
+            style: const TextStyle(color: Colors.white),
+          ),
           IconButton(
             onPressed: incrementCounter,
-            icon: Icon(Icons.add),
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           )
         ],
       ),

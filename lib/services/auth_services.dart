@@ -8,7 +8,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  Future<void> signInWithGoogle() async {
+  Future<void> signInWithGoogle(BuildContext context) async {
     try {
       GoogleSignInAccount? signInAccount = await _googleSignIn.signIn();
       if (signInAccount != null) {
@@ -20,16 +20,30 @@ class AuthService {
         await _auth.signInWithCredential(credential);
       }
     } catch (e) {
-      print('Error signin in with google$e');
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 5),
+          backgroundColor: Colors.red,
+          content: Text(' Something is Wrong in Google id'),
+        ),
+      );
     }
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut(BuildContext context) async {
     try {
       await _googleSignIn.signOut();
       await _auth.signOut();
     } catch (e) {
-      print('error signing out:$e');
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 5),
+          backgroundColor: Colors.red,
+          content: Text('error signing out'),
+        ),
+      );
     }
   }
 
@@ -40,7 +54,7 @@ class AuthService {
   }) async {
     await _auth
         .verifyPhoneNumber(
-      timeout: Duration(seconds: 30),
+      timeout: const Duration(seconds: 30),
       phoneNumber: "+91$phone",
       verificationCompleted: (phoneAuthCredential) {
         return;

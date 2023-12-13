@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/home/screen_home.dart';
+import 'package:food_app/home/homepage.dart';
 import 'package:food_app/services/auth_services.dart';
 
 class PhoneNumberVerification extends StatefulWidget {
-  PhoneNumberVerification({super.key});
+  const PhoneNumberVerification({super.key});
 
   @override
   State<PhoneNumberVerification> createState() =>
@@ -11,9 +11,9 @@ class PhoneNumberVerification extends StatefulWidget {
 }
 
 class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
-  TextEditingController _otpController = TextEditingController();
+  final TextEditingController _otpController = TextEditingController();
   AuthService authService = AuthService();
 
   @override
@@ -22,13 +22,13 @@ class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image(image: AssetImage('assets/image/vrfy.jpg')),
-          Text(
+          const Image(image: AssetImage('assets/image/vrfy.jpg')),
+          const Text(
             'Sign-in with phone',
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
-          Text('Enter You Phone number to continue'),
-          SizedBox(
+          const Text('Enter You Phone number to continue'),
+          const SizedBox(
             height: 20,
           ),
           TextFormField(
@@ -44,17 +44,17 @@ class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
               return null;
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           ElevatedButton(
-              style: ButtonStyle(
+              style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.amber)),
               onPressed: () {
                 authService.sentOtp(
                     phone: _phoneController.text,
-                    errorStep: () =>
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    errorStep: () => ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text('Error in sending OTP'),
                           backgroundColor: Colors.red,
                         )),
@@ -62,13 +62,13 @@ class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: Text('OTP Vrification'),
+                          title: const Text('OTP Vrification'),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Enter 6 digit OTP'),
-                              SizedBox(
+                              const Text('Enter 6 digit OTP'),
+                              const SizedBox(
                                 height: 10,
                               ),
                               TextFormField(
@@ -80,8 +80,9 @@ class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
                                         borderRadius:
                                             BorderRadius.circular(30))),
                                 validator: (value) {
-                                  if (value!.length != 6)
+                                  if (value!.length != 6) {
                                     return 'Invalid phone number';
+                                  }
                                   return null;
                                 },
                               ),
@@ -98,7 +99,8 @@ class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => ScreenHome(),
+                                            builder: (context) =>
+                                                const HomePage(),
                                           ));
                                     } else {
                                       Navigator.pop(context);
@@ -110,13 +112,13 @@ class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
                                     }
                                   });
                                 },
-                                child: Text('Submit'))
+                                child: const Text('Submit'))
                           ],
                         ),
                       );
                     });
               },
-              child: Text(
+              child: const Text(
                 'Send OTP',
                 style: TextStyle(color: Colors.white),
               )),
@@ -124,8 +126,8 @@ class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back),
-              label: Text('Back'))
+              icon: const Icon(Icons.arrow_back),
+              label: const Text('Back'))
         ],
       ),
     );

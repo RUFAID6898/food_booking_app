@@ -1,10 +1,20 @@
+import 'package:flutter/material.dart';
 import 'package:food_app/api_services/api_model.dart';
 
-class Cart {
+class Cart extends ChangeNotifier {
   final List<CartItem> items = [];
 
   void addItem(CategoryDishes dish, int quantity) {
-    items.add(CartItem(dish, quantity));
+    var existingItem = items.firstWhere(
+      (cartItem) => cartItem.dish == dish,
+      orElse: () => CartItem(dish, 0),
+    );
+
+    if (existingItem.quantity == 0) {
+      items.add(CartItem(dish, quantity));
+    } else {
+      existingItem.quantity += quantity;
+    }
   }
 
   void removeItem(CategoryDishes dish, int quantity) {
@@ -14,7 +24,7 @@ class Cart {
     );
 
     if (item.quantity > quantity) {
-      item.quantity != quantity;
+      item.quantity = quantity;
     } else {
       items.remove(item);
     }
@@ -32,7 +42,7 @@ class Cart {
 
 class CartItem {
   final CategoryDishes dish;
-  final int quantity;
+  int quantity;
 
   CartItem(this.dish, this.quantity);
 }

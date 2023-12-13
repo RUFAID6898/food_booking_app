@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_app/api_services/api_model.dart';
 import 'package:food_app/class/cart_items.dart';
 import 'package:food_app/class/item_counder.dart';
-import 'package:food_app/widget/counder_button.dart';
+import 'package:food_app/widget/counter_button.dart';
+import 'package:provider/provider.dart';
 
 class ItemWidget extends StatelessWidget {
   const ItemWidget({
@@ -11,15 +12,18 @@ class ItemWidget extends StatelessWidget {
     required this.dish,
     required this.cart,
     required this.counterProvider,
+    required this.onAddToCart,
   });
 
   final double size;
   final CategoryDishes dish;
   final Cart cart;
-  final CartProvider counterProvider;
+  final CounterProvider counterProvider;
+  final VoidCallback onAddToCart;
 
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<Cart>(context, listen: false);
     return Container(
       width: double.infinity,
       height: size * 0.55,
@@ -92,13 +96,14 @@ class ItemWidget extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                CounderButton(
+                CounterButton(
                     decrementCounter: () {
                       cart.removeItem(
                           dish, counterProvider.getCounter(dish.dishId!));
                       counterProvider.decrementCounter(dish.dishId!);
                     },
                     incrementCounter: () {
+                      onAddToCart();
                       cart.addItem(
                           dish, counterProvider.getCounter(dish.dishId!));
                       counterProvider.incrementCounter(dish.dishId!);
@@ -109,10 +114,9 @@ class ItemWidget extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            Container(
+            SizedBox(
               height: 100,
               width: 100,
-              color: Colors.red,
               child: Image(image: NetworkImage(dish.dishImage!)),
             )
           ],

@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:food_app/home/screen_home.dart';
+import 'package:food_app/home/homepage.dart';
 import 'package:food_app/loging_page/login_page.dart';
 import 'package:food_app/services/auth_services.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
 
+// ignore: must_be_immutable
 class Authentication extends StatelessWidget {
   Authentication({super.key});
 
@@ -23,7 +22,7 @@ class Authentication extends StatelessWidget {
           );
         }
         if (snapshot.hasData) {
-          return ScreenHome();
+          return const HomePage();
         } else {
           return LogingPage();
         }

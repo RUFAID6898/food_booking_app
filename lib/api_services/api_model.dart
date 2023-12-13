@@ -30,23 +30,22 @@ class UserModel {
     if (json['table_menu_list'] != null) {
       tableMenuList = <TableMenuList>[];
       json['table_menu_list'].forEach((v) {
-        tableMenuList!.add(new TableMenuList.fromJson(v));
+        tableMenuList!.add(TableMenuList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['restaurant_id'] = this.restaurantId;
-    data['restaurant_name'] = this.restaurantName;
-    data['restaurant_image'] = this.restaurantImage;
-    data['table_id'] = this.tableId;
-    data['table_name'] = this.tableName;
-    data['branch_name'] = this.branchName;
-    data['nexturl'] = this.nexturl;
-    if (this.tableMenuList != null) {
-      data['table_menu_list'] =
-          this.tableMenuList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['restaurant_id'] = restaurantId;
+    data['restaurant_name'] = restaurantName;
+    data['restaurant_image'] = restaurantImage;
+    data['table_id'] = tableId;
+    data['table_name'] = tableName;
+    data['branch_name'] = branchName;
+    data['nexturl'] = nexturl;
+    if (tableMenuList != null) {
+      data['table_menu_list'] = tableMenuList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -75,20 +74,19 @@ class TableMenuList {
     if (json['category_dishes'] != null) {
       categoryDishes = <CategoryDishes>[];
       json['category_dishes'].forEach((v) {
-        categoryDishes!.add(new CategoryDishes.fromJson(v));
+        categoryDishes!.add(CategoryDishes.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['menu_category'] = this.menuCategory;
-    data['menu_category_id'] = this.menuCategoryId;
-    data['menu_category_image'] = this.menuCategoryImage;
-    data['nexturl'] = this.nexturl;
-    if (this.categoryDishes != null) {
-      data['category_dishes'] =
-          this.categoryDishes!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['menu_category'] = menuCategory;
+    data['menu_category_id'] = menuCategoryId;
+    data['menu_category_image'] = menuCategoryImage;
+    data['nexturl'] = nexturl;
+    if (categoryDishes != null) {
+      data['category_dishes'] = categoryDishes!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -135,7 +133,7 @@ class CategoryDishes {
     if (json['addonCat'] != null) {
       addonCat = <AddonCat>[];
       json['addonCat'].forEach((v) {
-        addonCat!.add(new AddonCat.fromJson(v));
+        addonCat!.add(AddonCat.fromJson(v));
       });
     }
   }
@@ -143,19 +141,19 @@ class CategoryDishes {
   get menuCategory => null;
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['dish_id'] = this.dishId;
-    data['dish_name'] = this.dishName;
-    data['dish_price'] = this.dishPrice;
-    data['dish_image'] = this.dishImage;
-    data['dish_currency'] = this.dishCurrency;
-    data['dish_calories'] = this.dishCalories;
-    data['dish_description'] = this.dishDescription;
-    data['dish_Availability'] = this.dishAvailability;
-    data['dish_Type'] = this.dishType;
-    data['nexturl'] = this.nexturl;
-    if (this.addonCat != null) {
-      data['addonCat'] = this.addonCat!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['dish_id'] = dishId;
+    data['dish_name'] = dishName;
+    data['dish_price'] = dishPrice;
+    data['dish_image'] = dishImage;
+    data['dish_currency'] = dishCurrency;
+    data['dish_calories'] = dishCalories;
+    data['dish_description'] = dishDescription;
+    data['dish_Availability'] = dishAvailability;
+    data['dish_Type'] = dishType;
+    data['nexturl'] = nexturl;
+    if (addonCat != null) {
+      data['addonCat'] = addonCat!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -184,19 +182,19 @@ class AddonCat {
     if (json['addons'] != null) {
       addons = <Addons>[];
       json['addons'].forEach((v) {
-        addons!.add(new Addons.fromJson(v));
+        addons!.add(Addons.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['addon_category'] = this.addonCategory;
-    data['addon_category_id'] = this.addonCategoryId;
-    data['addon_selection'] = this.addonSelection;
-    data['nexturl'] = this.nexturl;
-    if (this.addons != null) {
-      data['addons'] = this.addons!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['addon_category'] = addonCategory;
+    data['addon_category_id'] = addonCategoryId;
+    data['addon_selection'] = addonSelection;
+    data['nexturl'] = nexturl;
+    if (addons != null) {
+      data['addons'] = addons!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -238,16 +236,16 @@ class Addons {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['dish_id'] = this.dishId;
-    data['dish_name'] = this.dishName;
-    data['dish_price'] = this.dishPrice;
-    data['dish_image'] = this.dishImage;
-    data['dish_currency'] = this.dishCurrency;
-    data['dish_calories'] = this.dishCalories;
-    data['dish_description'] = this.dishDescription;
-    data['dish_Availability'] = this.dishAvailability;
-    data['dish_Type'] = this.dishType;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['dish_id'] = dishId;
+    data['dish_name'] = dishName;
+    data['dish_price'] = dishPrice;
+    data['dish_image'] = dishImage;
+    data['dish_currency'] = dishCurrency;
+    data['dish_calories'] = dishCalories;
+    data['dish_description'] = dishDescription;
+    data['dish_Availability'] = dishAvailability;
+    data['dish_Type'] = dishType;
     return data;
   }
 }
